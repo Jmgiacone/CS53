@@ -1,0 +1,77 @@
+Jordan Giacone
+CS 53 Section C
+Homework #1
+8/26/13
+
+1. Deflated Tire Problem
+    
+    if you have the lug-wrench, jack and spare tire with you
+        place the jack underneath the back end of the car
+	
+	while the back wheels are touching the ground
+	    turn the crank on the jack counter-clockwise
+
+	lock the jack in place
+       
+	 for all nuts on wheel
+ 	    place lug-wrench on the nut
+  	    
+	    while the nut is still on the thread
+	        turn the lug-wrench 1 turn counter-clockwise
+            place the  nut in a pile
+                 
+	remove flat tire
+	place flat tire in the back of your car
+        line up the holes on the spare tire with the threads on the wheel
+	place spare tire on empty wheel
+	
+	for all nuts in the pile
+	    place the nut on a thread
+	    place the lug-wrench on the nut
+
+	    while the nut is not completely screwed on
+		turn the lug-wrench 1 turn clockwise
+
+	while the rear wheels of the car are not touching the ground
+	   turn the crank on the jack clockwise       	
+    else
+        if you own a cell phone
+            call someone to help you
+        else
+            start walking
+
+2. Convert decimal numbers to binary
+
+    define variables power and answer as integers both starting at 0
+    define binary as a string = ""
+
+    while 2^power <= decimal input  given
+	increment power by 1
+    
+    binary += "1"
+    answer += 2^power
+    decrement power by 1
+
+    while power >= 0
+	if 2^power > decimal -  answer
+	    binary += "0"
+        else
+            binary += "1"
+            answer += 2^power
+	decrement power by 1
+
+    binary will be your answer
+
+3. Fraction Problem
+
+    if your two fractions have the same base
+        add the two top numbers and put them over the base
+    else
+	find the least common multiple of the bases
+	
+	to find the lcm:
+	    put the multiples of each base into a list(base is 2: 2,4,6,8,10)
+	    find the smallest number that both lists share
+	    that number is your new base
+    	    multiply each fraction by the (lcm / base)
+	    add the numerators and divide by the common base    
