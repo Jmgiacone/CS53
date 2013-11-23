@@ -24,43 +24,7 @@ class Business
   
   public:
     Business(const string name = "", const float money = 0, 
-             string fileName = "") : m_name(name), m_money(money), m_numWares(0)
-             , m_numCustomers(0)
-    {
-      if(fileName != "")
-      {
-        Product p;
-        ifstream input;
-        char temp[100];
-
-        input.open(fileName.c_str());
-      
-        for(int i = 0; input; i++)
-        {
-          //Get up to the :
-          input.getline(temp, 100, SEPARATOR);
-          p.m_name = temp;
-
-          //Get up to the \n
-          input.getline(temp, 100);
-          
-          //String -> float function
-          p.m_price = atof(temp);
-          m_wares[i] = p;
-          m_numWares++;
-
-          //Start with "clean" variables for each iteration
-          strcpy(temp, "");
-          p.m_name = "";
-          p.m_price = 0;
-        }
-       
-        //Some sort of blank line at EOF. Getting rid of it (kind of) 
-        m_numWares--;
-        input.close();
-      }
-    };
-
+             const string fileName = "");
     void print() const;
     bool addCustomer(Customer& c);
     void sell_stuff();
