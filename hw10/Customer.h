@@ -24,9 +24,9 @@ class Customer
     short getHappiness() const {return m_happiness;};
     void setMoney(const float m) {m_money = m;};
     void print() const;
-    bool buy_something(const Product p);
-    bool throwSomething(Customer c);
-    bool rob(Customer c);
-    friend ostream& operator << (ostream& out, const Customer c);
+    bool buy_something(const Product& p);
+    bool throwSomething(Customer& c);
+    bool rob(Customer& c);
+    friend ostream& operator << (ostream& out, const Customer& c);
 };
 #endif
