@@ -5,6 +5,7 @@
 #include <fstream>
 #include <cstdlib>
 #include <ctime>
+#include <cstring>
 #include "Product.h"
 #include "Customer.h"
 
