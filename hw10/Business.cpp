@@ -61,7 +61,7 @@ void Business::print() const
 
   for(int i = 0; i < m_numWares; i++)
   {
-    //cout << m_wares[i] << (i == m_numWares - 1 ? "" : ", ");
+    cout << m_wares[i] << (i == m_numWares - 1 ? "" : ", ");
   }
   
   cout << "]";
@@ -93,7 +93,11 @@ void Business::sell_stuff()
   }
 }
 
-void customers_leave(Customer customers[], const int numCustomers)
+void Business::customers_leave(Customer customers[], const int numCustomers)
 {
-  
+  for(int i = 0; i < numCustomers && m_numCustomers > 0; i++)
+  {
+    customers[i] = m_customers[i];
+    m_numCustomers--;
+  } 
 }
