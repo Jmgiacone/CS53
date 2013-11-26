@@ -4,7 +4,8 @@ using namespace std;
 
 ostream& operator << (ostream& out, const Customer c)
 {
-  out << c.m_name << " has $" << c.m_money << " and purchases: [";
+  out << c.m_name << " has $" << c.m_money << ", a happiness of " 
+      << c.m_happiness << ", and purchases: [";
   
   for(int i = 0; i < c.m_numPurchases; i++)
   {
