@@ -3,8 +3,8 @@
 
 using namespace std;
 
-Business::Business(const string name = "", const float money = 0, 
-                   string fileName = "") 
+Business::Business(const string name, const float money, 
+                   string fileName) 
 {
   m_name = name;
   m_money = money;
