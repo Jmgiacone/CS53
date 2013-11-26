@@ -21,11 +21,13 @@ class Customer
     Customer(const string name = "", const float money = 
              ((rand() % static_cast<int>((100 * (MAX_MONEY - MIN_MONEY + 1) + MIN_MONEY))) / 100.0)) : 
              m_name(name), m_money(money), m_numPurchases(0) {};
-    bool purchase(const Product item);
     string getName() const {return m_name;};
     float getMoney() const {return m_money;};
     short getHappiness() const {return m_happiness;};
     void setMoney(const float m) {m_money = m;};
     void print() const;
+    bool buy_something(const Product p);
+    bool throwSomething(Customer c);
+    bool rob(Customer c);
 };
 #endif
