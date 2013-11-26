@@ -53,8 +53,7 @@ void Business::print() const
   for(int i = 0; i < m_numCustomers; i++)
   {
     cout << "\n  -";
-    m_customers[i].print();
-    cout << endl;
+    cout << m_customers[i] << endl;
   }
 
   cout << endl;
@@ -82,7 +81,16 @@ bool Business::addCustomer(Customer& c)
 
 void Business::sell_stuff()
 {
+  Product p;
+  for(int i = 0; i < m_numCustomers; i++)
+  {
+    p = m_wares[rand() % m_numWares];
 
+    if(m_customers[i].buy_something(p))
+    {
+      m_money += p.m_price;
+    }
+  }
 }
 
 void customers_leave(Customer customers[], const int numCustomers)
