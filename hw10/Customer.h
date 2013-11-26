@@ -1,8 +1,6 @@
 #ifndef CUSTOMER_H
 #define CUSTOMER_H
 
-#include <iostream>
-#include <string>
 #include <cstdlib>
 #include "Product.h"
 
@@ -29,5 +27,6 @@ class Customer
     bool buy_something(const Product p);
     bool throwSomething(Customer c);
     bool rob(Customer c);
+    friend ostream& operator << (ostream& out, const Customer c);
 };
 #endif
