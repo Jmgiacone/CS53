@@ -1,18 +1,19 @@
-#include <iostream>
 #include "Customer.h"
 
 using namespace std;
 
-void Customer::print() const
+ostream& operator << (ostream& out, const Customer c)
 {
-  cout << m_name << " has $" << m_money << " and purchases: [";
+  out << c.m_name << " has $" << c.m_money << " and purchases: [";
   
-  for(int i = 0; i < m_numPurchases; i++)
+  for(int i = 0; i < c.m_numPurchases; i++)
   {
-    //cout << m_purchases[i] << (i == m_numPurchases - 1 ? "" : ", ");
+    out << c.m_purchases[i] << (i == c.m_numPurchases - 1 ? "" : ", ");
   } 
   
-  cout << "]";
+  out << "]";
+
+  return out;
 }
 
 bool Customer:: buy_something(const Product p)
@@ -25,11 +26,12 @@ bool Customer:: buy_something(const Product p)
       m_money -= p.m_price;
       m_purchases[m_numPurchases] = p;
       m_numPurchases++;
-  
+      m_happiness += 15;
       return true; 
     }
   }
-
+  
+  m_happiness -= 10;
   return false;
 }
 bool Customer::throwSomething(Customer c)
