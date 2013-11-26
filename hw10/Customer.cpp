@@ -2,7 +2,7 @@
 
 using namespace std;
 
-ostream& operator << (ostream& out, const Customer c)
+ostream& operator << (ostream& out, const Customer& c)
 {
   out << c.m_name << " has $" << c.m_money << ", a happiness of " 
       << c.m_happiness << ", and purchases: [";
@@ -17,7 +17,7 @@ ostream& operator << (ostream& out, const Customer c)
   return out;
 }
 
-bool Customer:: buy_something(const Product p)
+bool Customer::buy_something(const Product& p)
 {
   //Returns 1 or 0 which maps to true and false respectively
   if(rand() % 2)//It's a 1
@@ -27,6 +27,7 @@ bool Customer:: buy_something(const Product p)
       m_money -= p.m_price;
       m_purchases[m_numPurchases] = p;
       m_numPurchases++;
+      
       m_happiness += 15;
       return true; 
     }
@@ -35,11 +36,34 @@ bool Customer:: buy_something(const Product p)
   m_happiness -= 10;
   return false;
 }
-bool Customer::throwSomething(Customer c)
+bool Customer::throwSomething(Customer& c)
 {
-  return true;
+  if(m_numPurchases > 0)
+  {
+    m_happiness += 5;
+    c.m_happiness -= 20;
+ 
+    //Cut the last index off the array. Effectively 'removing' the last item
+    m_numPurchases--;
+
+    return true;
+  }
+
+  m_happiness -= 25;
+  return false;
 }
-bool Customer::rob(Customer c)
+
+bool Customer::rob(Customer& c)
 {
-  return true;
+  if(m_numPurchases < MAX_PURCHASES && c.m_numPurchases > 0)
+  {
+    m_purchases[m_numPurchases] = c.m_purchases[c.m_numPurchases];
+    c.m_numPurchases--;
+    m_happiness += 25;
+    c.m_happiness -= 20;
+    return true;
+  }
+ 
+  m_happiness -= 5;
+  return false;
 }
