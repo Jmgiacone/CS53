@@ -17,6 +17,8 @@ class Customer
 
   public:
     Customer();
+    void setName(const string s) {m_name = s;};
+    void setInclination(const string s) {m_inclination = s;};
     string getName() const {return m_name;};
     float getMoney() const {return m_money;};
     string getInclination() {return m_inclination;};
