@@ -5,7 +5,7 @@
 #include "Product.h"
 
 using namespace std;
-const int MAX_PURCHASES = 20;
+const int MAX_PURCHASES = 20, MAX_HAPPINESS = 100, MIN_HAPPINESS = 0;
 const float MIN_MONEY = 4.0, MAX_MONEY = 250;
 class Customer
 {
@@ -17,8 +17,10 @@ class Customer
 
   public:
     Customer(const string name = "", const float money = 
-             ((rand() % static_cast<int>((100 * (MAX_MONEY - MIN_MONEY + 1) + MIN_MONEY))) / 100.0)) : 
-             m_name(name), m_money(money), m_numPurchases(0) {};
+            ((rand() % static_cast<int>(
+            (100 * (MAX_MONEY - MIN_MONEY + 1) + MIN_MONEY))) / 100.0)) : 
+            m_name(name), m_money(money), m_numPurchases(0), m_happiness(
+            rand() % (MAX_HAPPINESS - MIN_HAPPINESS + 1) + MIN_HAPPINESS) {};
     string getName() const {return m_name;};
     float getMoney() const {return m_money;};
     short getHappiness() const {return m_happiness;};
