@@ -19,7 +19,10 @@ class Customer
     Customer();
     string getName() const {return m_name;};
     float getMoney() const {return m_money;};
+    string getInclination() {return m_inclination;};
     short getHappiness() const {return m_happiness;};
+    void setHappniess(short s) {m_happiness = s;};
+    void setInclination(string s) {m_inclination = s;};
     void setMoney(const float m) {m_money = m;};
     void print() const;
     bool buy_something(const Product& p);
