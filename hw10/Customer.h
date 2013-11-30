@@ -16,11 +16,7 @@ class Customer
     short m_numPurchases, m_happiness;    
 
   public:
-    Customer(const string name = "", const float money = 
-            ((rand() % static_cast<int>(
-            (100 * (MAX_MONEY - MIN_MONEY + 1) + MIN_MONEY))) / 100.0)) : 
-            m_name(name), m_money(money), m_numPurchases(0), m_happiness(
-            rand() % (MAX_HAPPINESS - MIN_HAPPINESS + 1) + MIN_HAPPINESS) {};
+    Customer();
     string getName() const {return m_name;};
     float getMoney() const {return m_money;};
     short getHappiness() const {return m_happiness;};

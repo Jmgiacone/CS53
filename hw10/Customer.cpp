@@ -2,6 +2,13 @@
 
 using namespace std;
 
+Customer::Customer()
+{
+  m_money = (rand() % static_cast<int>((100 * (MAX_MONEY - MIN_MONEY + 1) + MIN_MONEY))) / 100.0; 
+  m_numPurchases = 0;
+  m_happiness = rand() % (MAX_HAPPINESS - MIN_HAPPINESS + 1) + MIN_HAPPINESS;
+}
+
 ostream& operator << (ostream& out, const Customer& c)
 {
   out << c.m_name << " has $" << c.m_money << ", a happiness of " 
