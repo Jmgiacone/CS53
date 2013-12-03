@@ -30,6 +30,6 @@ class Business
     bool addCustomer(Customer& c);
     void sell_stuff();
     void customers_leave(Customer customers[], const int numCustomers); 
-    
+    short getNumCustomers() {return m_numCustomers;};
 };
 #endif
