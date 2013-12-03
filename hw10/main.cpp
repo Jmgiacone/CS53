@@ -43,11 +43,12 @@ int main()
       store = COMIC_BOOK_STORE;
     }
     else
-      cout << "Something is very broken!" << endl;
+      cout << "Something is very broken!" << list[i].getName()
+           << list[i].getInclination() << endl;
     list[i].setInclination(store);
   }
   customersRemaining = MoeBar.getNumCustomers() + CBGStore.getNumCustomers();
-  while ((customersRemaining != 1) || (cycles != 20))
+  while ((customersRemaining != 1) && (cycles != 20))
   {
     MoeBar.sell_stuff();
     CBGStore.sell_stuff();
@@ -65,7 +66,9 @@ int main()
     }
     for (int i = 0; i < customersRemaining; i++)
     {
-      if (list[i].getHappiness() < 10)
+      if (desperateCustomers == 19)
+        cycles = 19;
+      else if (list[i].getHappiness() < 10)
       {
         cout << list[i].getName() << " falls desperately hopeless at level "
              << list[i].getHappiness()
