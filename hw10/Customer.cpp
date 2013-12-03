@@ -74,3 +74,8 @@ bool Customer::rob(Customer& c)
   m_happiness -= 5;
   return false;
 }
+
+bool Customer::hasSameInclination(const Customer& other)
+{
+  return m_inclination == other.m_inclination;
+}
