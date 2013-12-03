@@ -20,30 +20,27 @@ int main()
   custlist.open("Customer.dat");
   Business MoeBar("Moe's", 0 ,"MoeBar.txt");
   Business CBGStore("CBG's", 0, "CBGStore.txt");
-  while (custlist)
+  for (int i=0; i<NUM_OF_CUSTOMERS; i++)
   {
-    for (int i=0; i<NUM_OF_CUSTOMERS; i++)
+    getline(custlist,custName,',');
+    list[i].setName(custName);
+    getline(custlist,store,'\n');
+    if (store == " -1")
     {
-      getline(custlist,custName,',');
-      list[i].setName(custName);
-      custlist.ignore(1,' ');
-      getline(custlist,store);
-      if (store == "-1")
-      {
-        MoeBar.addCustomer(list[i]);
-        store = MOES_BAR;
-      }
-      else if (store == "1")
-      {
-        CBGStore.addCustomer(list[i]);
-        store = COMIC_BOOK_STORE;
-      }
-      else
-	cout << "Something is very broken!" << endl;
-      list[i].setInclination(store);
+      MoeBar.addCustomer(list[i]);
+      store = MOES_BAR;
     }
+    else if (store == " 1")
+    {
+      CBGStore.addCustomer(list[i]);
+      store = COMIC_BOOK_STORE;
+    }
+    else
+      cout << "Something is very broken!" << endl;
+    list[i].setInclination(store);
   }
   MoeBar.sell_stuff();
   CBGStore.sell_stuff();
+
   return 0;
 }
