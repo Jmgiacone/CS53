@@ -29,25 +29,21 @@ int main()
       custlist.ignore(1,' ');
       getline(custlist,store);
       if (store == "-1")
+      {
+        MoeBar.addCustomer(list[i]);
         store = MOES_BAR;
+      }
       else if (store == "1")
+      {
+        CBGStore.addCustomer(list[i]);
         store = COMIC_BOOK_STORE;
+      }
       else
 	cout << "Something is very broken!" << endl;
       list[i].setInclination(store);
     }
   }
-/*  for (int i=0; i<NUM_OF_CUSTOMERS; i++)
-  {
-    store = ((list[i].getInclination).c_str());
-    if (store==MOES_BAR)
-      MoeBar.addCustomer(list[i]);
-    else if (store==COMIC_BOOK_STORE)
-      CBGStore.addCustomer(list[i]);
-    else
-      cout << "Something is broken!" << endl;
-  }
   MoeBar.sell_stuff();
-  CBGStore.sell_stuff();*/
+  CBGStore.sell_stuff();
   return 0;
 }
