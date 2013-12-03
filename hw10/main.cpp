@@ -5,6 +5,7 @@
 #include <string>
 #include <cstdlib>
 #include <ctime>
+#include <algorithm>
 
 using namespace std;
 
@@ -43,5 +44,6 @@ int main()
   CBGStore.sell_stuff();
   MoeBar.customers_leave(list, MoeBar.getNumCustomers());
   CBGStore.customers_leave(list, CBGStore.getNumCustomers());
+  random_shuffle(&list[0], &list[NUM_OF_CUSTOMERS]);
   return 0;
 }
