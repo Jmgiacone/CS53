@@ -21,6 +21,7 @@ int main()
   int cycles = 0;
   string custName;
   string store;
+  Customer temporary; //Used for sorting
   Customer list[NUM_OF_CUSTOMERS];
   Customer listOfDesperation[NUM_OF_CUSTOMERS];
   ifstream custlist;
@@ -50,9 +51,11 @@ int main()
   {
     MoeBar.sell_stuff();
     CBGStore.sell_stuff();
+    for (int i=0; i < NUM_OF_CUSTOMERS; i++)
+      cout << list[i] << endl;
     MoeBar.customers_leave(list, MoeBar.getNumCustomers());
     CBGStore.customers_leave(list, CBGStore.getNumCustomers());
-    random_shuffle(&list[0], &list[NUM_OF_CUSTOMERS]);
+  //  random_shuffle(&list[0], &list[NUM_OF_CUSTOMERS]);
     for (int i = 0; i < NUM_OF_CUSTOMERS; i++)
     {
       here = true;
@@ -120,5 +123,23 @@ int main()
     }
     cycles++;
   }
+  //Sorting
+  
+/*  for (int j=0; j < NUM_OF_CUSTOMERS; j++)
+  {
+    for (int i=0; i < (NUM_OF_CUSTOMERS-1); i++)
+    {
+      if (list[i].getHappiness() < list[i+1].getHappiness())
+      {
+        temporary = list[i];
+        list[i] = list[i+1];
+        list[i+1] = temporary;
+      }
+    }
+  }
+  for (int i=0; i<NUM_OF_CUSTOMERS; i++)
+  {
+    cout << list[i] << endl;
+  }*/
   return 0;
 }
