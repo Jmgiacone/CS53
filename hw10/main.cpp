@@ -15,8 +15,8 @@ int main()
 {
   srand(time(NULL));
   bool theifOrPitcher;
+  bool here;
   int unluckyPerson;
-  int customersRemaining;
   int desperateCustomers = 0;
   int cycles = 0;
   string custName;
@@ -43,53 +43,80 @@ int main()
       store = COMIC_BOOK_STORE;
     }
     else
-      cout << "Something is very broken!" << list[i].getName()
-           << list[i].getInclination() << endl;
+      cout << "Something is very broken!" << endl;
     list[i].setInclination(store);
   }
-  customersRemaining = MoeBar.getNumCustomers() + CBGStore.getNumCustomers();
-  while ((customersRemaining != 1) && (cycles != 20))
+  while ((desperateCustomers != 19) && (cycles != 20))
   {
     MoeBar.sell_stuff();
     CBGStore.sell_stuff();
     MoeBar.customers_leave(list, MoeBar.getNumCustomers());
     CBGStore.customers_leave(list, CBGStore.getNumCustomers());
-    random_shuffle(&list[0], &list[customersRemaining]);
-    for (int i = 0; i < customersRemaining; i++)
+    random_shuffle(&list[0], &list[NUM_OF_CUSTOMERS]);
+    for (int i = 0; i < NUM_OF_CUSTOMERS; i++)
     {
-      unluckyPerson = (rand() % customersRemaining);
-      theifOrPitcher = list[i].hasSameInclination(list[unluckyPerson]);
-      if (theifOrPitcher)
-        list[i].rob(list[unluckyPerson]);
+      here = true;
+      for(int j=0; j<desperateCustomers; j++)
+      {
+        if (list[i].getName()==listOfDesperation[j].getName())
+          here = false;
+      }
+      if (!here);
       else
-        list[i].throwSomething(list[unluckyPerson]);
+      {
+        do
+        {
+          here = true;
+          unluckyPerson = (rand() % NUM_OF_CUSTOMERS);
+          for (int j=0; j<desperateCustomers; j++)
+          {
+            if (list[unluckyPerson].getName() == listOfDesperation[j].getName())
+              here = false;
+          }
+        } while (!here);
+        theifOrPitcher = list[i].hasSameInclination(list[unluckyPerson]);
+        if (theifOrPitcher)
+          list[i].rob(list[unluckyPerson]);
+        else
+          list[i].throwSomething(list[unluckyPerson]);
+      }
     }
-    for (int i = 0; i < customersRemaining; i++)
+    for (int i = 0; i < NUM_OF_CUSTOMERS; i++)
     {
-      if (desperateCustomers == 19)
-        cycles = 19;
-      else if (list[i].getHappiness() < 10)
+      here = true;
+      for(int j=0; j<desperateCustomers; j++)
       {
-        cout << list[i].getName() << " falls desperately hopeless at level "
-             << list[i].getHappiness()
-             << " and is shipped to Shelbyville House of Desperation." << endl;
-        listOfDesperation[desperateCustomers] = list[i];
-        desperateCustomers++;
+        if (list[i].getName()==listOfDesperation[j].getName())
+          here = false;
       }
-      else if (list[i].getHappiness() > 90)
-      {
-        cout << list[i].getName() << " reaches nirvana at level "
-             << list[i].getHappiness()
-             << " and goes to lead Shelbyville House of Desperation." << endl;
-        listOfDesperation[desperateCustomers] = list[i];
-        desperateCustomers++;
-      }
-      else if (list[i].getInclination() == MOES_BAR)
-        MoeBar.addCustomer(list[i]);
-      else if (list[i].getInclination() == COMIC_BOOK_STORE)
-        CBGStore.addCustomer(list[i]);
+      if (!here);
       else
-	cout << "Something is broken!" << endl;
+      {
+        if (desperateCustomers == 19)
+          cycles = 19;
+        else if (list[i].getHappiness() < 10)
+        {
+          cout << list[i].getName() << " falls desperately hopeless at level "
+               << list[i].getHappiness()
+               << " and is shipped to Shelbyville House of Desperation." << endl;
+          listOfDesperation[desperateCustomers] = list[i];
+          desperateCustomers++;
+          list[i].setInclination("Sadness");
+         }
+        else if (list[i].getHappiness() > 90)
+        {
+          cout << list[i].getName() << " reaches nirvana at level "
+               << list[i].getHappiness()
+               << " and goes to lead Shelbyville House of Desperation." << endl;
+          listOfDesperation[desperateCustomers] = list[i];
+          desperateCustomers++;
+          list[i].setInclination("Sadness");
+         }
+        else if (list[i].getInclination() == MOES_BAR)
+          MoeBar.addCustomer(list[i]);
+        else if (list[i].getInclination() == COMIC_BOOK_STORE)
+          CBGStore.addCustomer(list[i]);
+      }
     }
     cycles++;
   }
