@@ -32,7 +32,7 @@ class Customer
     bool buy_something(const Product& p);
     bool throwSomething(Customer& c);
     bool rob(Customer& c);
-	bool hasSameInclination(const Customer& other);
+    bool hasSameInclination(const Customer& other);
     friend ostream& operator << (ostream& out, const Customer& c);
 };
 #endif
