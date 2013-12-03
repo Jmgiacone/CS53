@@ -8,7 +8,7 @@ using namespace std;
 const int MAX_PURCHASES = 20, MAX_HAPPINESS = 100, MIN_HAPPINESS = 0;
 const float MIN_MONEY = 4.0, MAX_MONEY = 250;
 const string MOES_BAR = "Bar Attendee", 
-             COMIC_BOOK_STORE = "Comic Book Enthusiast"
+             COMIC_BOOK_STORE = "Comic Book Enthusiast";
 
 class Customer
 {
