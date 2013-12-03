@@ -93,11 +93,15 @@ void Business::sell_stuff()
   }
 }
 
-void Business::customers_leave(Customer customers[], const int numCustomers)
+short Business::customers_leave(Customer customers[], const int numCustomers)
 {
-  for(int i = 0; i < numCustomers && m_numCustomers > 0; i++)
+  short count = 0;
+  for(int i = numCustomers - 1; m_numCustomers > 0; i++)
   {
     customers[i] = m_customers[i];
     m_numCustomers--;
+    count++;
   } 
+
+  return count;
 }
