@@ -41,6 +41,7 @@ int main()
   }
   MoeBar.sell_stuff();
   CBGStore.sell_stuff();
-
+  MoeBar.customers_leave(list, MoeBar.getNumCustomers());
+  CBGStore.customers_leave(list, CBGStore.getNumCustomers());
   return 0;
 }
