@@ -7,6 +7,9 @@
 using namespace std;
 const int MAX_PURCHASES = 20, MAX_HAPPINESS = 100, MIN_HAPPINESS = 0;
 const float MIN_MONEY = 4.0, MAX_MONEY = 250;
+const string MOES_BAR = "Bar Attendee", 
+             COMIC_BOOK_STORE = "Comic Book Enthusiast"
+
 class Customer
 {
   private:
@@ -24,7 +27,6 @@ class Customer
     string getInclination() {return m_inclination;};
     short getHappiness() const {return m_happiness;};
     void setHappniess(short s) {m_happiness = s;};
-    void setInclination(string s) {m_inclination = s;};
     void setMoney(const float m) {m_money = m;};
     void print() const;
     bool buy_something(const Product& p);
