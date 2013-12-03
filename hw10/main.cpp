@@ -18,7 +18,7 @@ int main()
   string store;
   Customer list[NUM_OF_CUSTOMERS];
   ifstream custlist;
-  custlist.open("Customer.dat");
+  custlist.open("CustomerList.txt");
   Business MoeBar("Moe's", 0 ,"MoeBar.txt");
   Business CBGStore("CBG's", 0, "CBGStore.txt");
   for (int i=0; i<NUM_OF_CUSTOMERS; i++)
