@@ -12,7 +12,10 @@
 #include "Product.h"
 
 using namespace std;
-const int MAX_PURCHASES = 20, MAX_HAPPINESS = 100, MIN_HAPPINESS = 0;
+const int MAX_PURCHASES = 20, MAX_HAPPINESS = 100, MIN_HAPPINESS = 0,
+          PURCHASE_SUCCESS = 15, PURCHASE_FAIL = -10, ROB_THIEF_SUCCESS = 25, 
+          ROB_VICTIM_SUCCESS = -20, ROB_FAIL = -5, THROW_BULLY_SUCCESS = 5, 
+          THROW_VICTIM_SUCCESS = -20, THROW_FAIL = -25;
 const float MIN_MONEY = 4.0, MAX_MONEY = 250;
 const string MOES_BAR = "Bar Attendee", 
              COMIC_BOOK_STORE = "Comic Book Enthusiast";
@@ -26,6 +29,10 @@ class Customer
     short m_numPurchases, m_happiness;    
 
   public:
+    
+    //Purpose: A default constructor
+    //Pre: None
+    //Post: The object is constructed
     Customer();
 
     //Purpose:  Sets the Customer's name
@@ -58,13 +65,10 @@ class Customer
     //Post:     Returns m_happiness(short)
     short getHappiness() const {return m_happiness;};
     
-    //Purpose:  Sets the Customer's happiness
+    //Purpose:  Adds to the Customer's happiness
     //Pre:      None
-    //Post:     If s < 0, sets m_happiness to 0
-    //		If s > 100, sets m_happiness to 100
-    //		Else sets m_happiness to s
-    void setHappiness(short s) {m_happiness =(s < 0 ? 0 :
-                                             (s > 100 ? 100 : s));};
+    //Post:     The variable m_happiness is changed
+    void addHappiness(short s);
 
     //Purpose:  Sets the Customer's money
     //Pre:      None
