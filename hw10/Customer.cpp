@@ -1,3 +1,10 @@
+//Names:        MURTISHAW, AARON
+//              GIACONE, JORDAN
+//              LONG, JACOB
+//Class:        CS 53, Section C
+//Date:         4 December 2013
+//Description:  Defines functions related to the Customer class
+
 #include "Customer.h"
 
 using namespace std;
@@ -35,14 +42,13 @@ bool Customer::buy_something(const Product& p)
       m_money -= p.m_price;
       m_purchases[m_numPurchases] = p;
       m_numPurchases++;
-      
-      m_happiness += 15;
+      setHappiness(m_happiness+15);
       cout << m_name << " bought " << p << " and their happiness is now " << m_happiness << endl;
       return true; 
     }
   }
   
-  m_happiness -= 10;
+  setHappiness(m_happiness-10);
   
   cout << m_name << " didn't buy " << p << " and their happiness is now " << m_happiness << endl;
   return false;
@@ -51,8 +57,8 @@ bool Customer::throwSomething(Customer& c)
 {
   if(m_numPurchases > 0)
   {
-    m_happiness += 5;
-    c.m_happiness -= 20;
+    setHappiness(m_happiness+5);
+    c.setHappiness(m_happiness-20);
     
     cout << m_name  << " threw their " << m_purchases[m_numPurchases - 1] << " at " << c.m_name << endl; 
     //Cut the last index off the array. Effectively 'removing' the last item
@@ -62,7 +68,7 @@ bool Customer::throwSomething(Customer& c)
   }
   
   cout << m_name << " didn't get a chance to throw anything at " << c.m_name << " because they don't have anything to throw." << endl;
-  m_happiness -= 25;
+  setHappiness(m_happiness-25);
   return false;
 }
 
@@ -73,15 +79,15 @@ bool Customer::rob(Customer& c)
     m_purchases[m_numPurchases] = c.m_purchases[c.m_numPurchases - 1];
     c.m_numPurchases--;
     m_numPurchases++;
-    m_happiness += 25;
-    c.m_happiness -= 20;
+    setHappiness(m_happiness+25);
+    c.setHappiness(m_happiness-20);
     
     cout << m_name << " stole " << m_purchases[m_numPurchases - 1] << " from " << c.m_name << endl;
 
     return true;
   }
  
-  m_happiness -= 5;
+  setHappiness(m_happiness-5);
   
   cout << m_name << " didn't get a chance to steal anything from " << c.m_name << endl;
   return false;

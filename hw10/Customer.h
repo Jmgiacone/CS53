@@ -1,3 +1,10 @@
+//Names:        MURTISHAW, AARON
+//              GIACONE, JORDAN
+//              LONG, JACOB
+//Class:        CS 53, Section C
+//Date:         4 December 2013
+//Description:  Defines the Customer class and related constants
+
 #ifndef CUSTOMER_H
 #define CUSTOMER_H
 

@@ -1,3 +1,10 @@
+//Names:        MURTISHAW, AARON
+//              GIACONE, JORDAN
+//              LONG, JACOB
+//Class:        CS 53, Section C
+//Date:         4 December 2013
+//Description:  Defines the Business class and related constants
+
 #ifndef BUSINESS_H
 #define BUSINESS_H
 
