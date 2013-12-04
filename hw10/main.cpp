@@ -73,11 +73,13 @@ int main()
     MoesBar.sell_stuff();
     CBGStore.sell_stuff();
 
-    numCustomers += MoesBar.customers_leave(list, 0);
+    numCustomers = 0;
+
+    numCustomers += MoesBar.customers_leave(list, numCustomers);
  
     numCustomers += CBGStore.customers_leave(list, numCustomers);  
  
-    random_shuffle(&list[0], &list[NUM_PARTICIPANTS]);
+    random_shuffle(&list[0], &list[numCustomers]);
  
     int other;
     for(int i = 0; i < numCustomers; i++)
