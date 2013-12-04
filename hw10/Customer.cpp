@@ -57,8 +57,8 @@ bool Customer::throwSomething(Customer& c)
 {
   if(m_numPurchases > 0)
   {
-    setHappiness(m_happiness+5);
-    c.setHappiness(m_happiness-20);
+    setHappiness(m_happiness + 5);
+    c.setHappiness(c.m_happiness - 20);
     
     cout << m_name  << " threw their " << m_purchases[m_numPurchases - 1] << " at " << c.m_name << endl; 
     //Cut the last index off the array. Effectively 'removing' the last item
@@ -79,15 +79,15 @@ bool Customer::rob(Customer& c)
     m_purchases[m_numPurchases] = c.m_purchases[c.m_numPurchases - 1];
     c.m_numPurchases--;
     m_numPurchases++;
-    setHappiness(m_happiness+25);
-    c.setHappiness(m_happiness-20);
+    setHappiness(m_happiness + 25);
+    c.setHappiness(c.m_happiness - 20);
     
     cout << m_name << " stole " << m_purchases[m_numPurchases - 1] << " from " << c.m_name << endl;
 
     return true;
   }
  
-  setHappiness(m_happiness-5);
+  setHappiness(m_happiness - 5);
   
   cout << m_name << " didn't get a chance to steal anything from " << c.m_name << endl;
   return false;

@@ -35,7 +35,7 @@ int main()
 {
   srand(time(NULL));
   
-  int numCustomers = 0, numCycles = 0, numParticipants = 0, MoeHap=0, CBGHap=0;
+  int numCustomers = 0, numCycles = 0, numParticipants = 0, MoeHap = 0, CBGHap = 0;
   string custName, store;
   Customer list[NUM_PARTICIPANTS];
   Customer participants[NUM_PARTICIPANTS];
@@ -64,8 +64,10 @@ int main()
     
     numCustomers++;
   }
+
   for (int i = 0; i < NUM_PARTICIPANTS; i++)
     cout << list[i] << endl;
+
   while(numCustomers > 1 && numCycles < 20)
   {
     cout << endl << "Round " << numCycles + 1 << ":" << endl << endl;
@@ -80,7 +82,7 @@ int main()
       else if(list[numCustomers - 1].getInclination() == COMIC_BOOK_STORE)
       {
         CBGStore.addCustomer(list[numCustomers - 1]);
-        cout << list[numCustomers - 1].getName() << " wants comics!" << endl;
+        cout << list[numCustomers - 1].getName() << " went into the comic store!" << endl;
         numCustomers--;
       }
       else 
@@ -119,7 +121,11 @@ int main()
     {
       if(list[i].getHappiness() < 10 || list[i].getHappiness() > 90)
       {
-        cout << list[i].getName() << " is at happiness level " << list[i].getHappiness() << ". There are now " << numCustomers - 1 << " people left." << endl;
+        cout << list[i].getName() << (list[i].getHappiness() < 10 ? 
+                                     " has fallen into despair " : 
+                                     " has reached Nirvana ") 
+             << "and went to Shelbyville" << ". There are now " 
+             << numCustomers - 1 << " people left." << endl;
         participants[i] = list[i];
         removeIndex(list, i, numCustomers);
         numCustomers--;
