@@ -46,7 +46,8 @@ int main()
     
     numCustomers++;
   }
-
+  for (int i = 0; i < NUM_PARTICIPANTS; i++)
+    cout << list[i] << endl;
   while(numCustomers > 1 && numCycles < 20)
   {
     while(numCustomers - 1 >= 0)
