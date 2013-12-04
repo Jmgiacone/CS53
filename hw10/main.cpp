@@ -12,6 +12,8 @@ using namespace std;
 const int NUM_PARTICIPANTS = 20;
 
 void removeIndex(Customer list[], const int index, const int size);
+void displayArray(ostream& stream, Customer list[], const int listSize);
+
 int main()
 {
   srand(time(NULL));
@@ -101,6 +103,7 @@ int main()
       }
     }
 
+    displayArray(cout, list, numCustomers);
     numCycles++;
   }
   
@@ -112,5 +115,13 @@ void removeIndex(Customer list[], const int index, const int size)
   for(int i = index; i < size - 1; i++)
   {
     list[i] = list[i + 1]; 
+  }
+}
+
+void displayArray(ostream& stream, Customer list[], const int listSize)
+{
+  for(int i = 0; i < listSize; i++)
+  {
+    stream << list[i] << endl;
   }
 }
