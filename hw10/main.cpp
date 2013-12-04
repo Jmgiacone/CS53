@@ -9,7 +9,7 @@
 
 using namespace std;
 
-const int NUM_OF_CUSTOMERS = 20;
+const int NUM_PARTICIPANTS = 20;
 
 void removeIndex(Customer list[], const int index, const int size);
 int main()
@@ -18,12 +18,13 @@ int main()
   
   int numCustomers = 0, numCycles = 0;
   string custName, store;
-  Customer list[NUM_OF_CUSTOMERS];
+  Customer list[NUM_PARTICIPANTS];
   ifstream custlist("CustomerList.txt");
 
   Business MoesBar("Moe's Bar", 0 ,"MoeBar.txt"), CBGStore("Comic Book Guy's Store", 0, "CBGStore.txt");
 
-  for (int i = 0; i < NUM_OF_CUSTOMERS; i++)
+  cout << "Started reading from the file" << endl;
+  for (int i = 0; i < NUM_PARTICIPANTS; i++)
   {
     getline(custlist,custName,',');
     list[i].setName(custName);
@@ -43,44 +44,60 @@ int main()
     }
     
     numCustomers++;
+    cout << "Customer #" << numCustomers << ": " << list[i] << "\n  Their inclination is: " << list[i].getInclination() << endl;
   }
 
+  cout << "Started the while loop" << endl;
+ 
   while(numCustomers > 1 && numCycles < 20)
   {
-    for(int i = 0; i < numCustomers; i++)
+    while(numCustomers - 1 >= 0)
     {
-      if(list[i].getInclination() == MOES_BAR)
+      if(list[numCustomers - 1].getInclination() == MOES_BAR)
       {
-        MoesBar.addCustomer(list[i]);
+        MoesBar.addCustomer(list[numCustomers - 1]);
+        cout << list[numCustomers - 1].getName() << " went into Moe's!" << endl;
+        numCustomers--;
       }
-      else if(list[i].getInclination() == COMIC_BOOK_STORE)
+      else if(list[numCustomers - 1].getInclination() == COMIC_BOOK_STORE)
       {
-        CBGStore.addCustomer(list[i]);
+        CBGStore.addCustomer(list[numCustomers - 1]);
+        cout << list[numCustomers - 1].getName() << " wants comics!" << endl;
+        numCustomers--;
+      }
+      else 
+      {
+        cout << "We have another problem" << endl;
       }
     }
-    
-    numCustomers = 0;
-
+   
+    cout << "Moe is selling stuff" << endl; 
     MoesBar.sell_stuff();
+    cout << "Moe is done.\nCBG is selling stuff" << endl;
     CBGStore.sell_stuff();
+    cout << "CBG is done." << endl;
 
+    cout << "Shooing customers out of Moe's Bar" << endl;
     numCustomers += MoesBar.customers_leave(list, 0);
-    numCustomers += CBGStore.customers_leave(list, NUM_OF_CUSTOMERS - numCustomers);  
  
-    random_shuffle(&list[0], &list[NUM_OF_CUSTOMERS]);
+    cout << "Shooing done.\nShooing customers out of CBG's Store" << endl;
+    numCustomers += CBGStore.customers_leave(list, numCustomers);  
+    cout << "Shooing done" << endl;
  
-    Customer other;
+    random_shuffle(&list[0], &list[NUM_PARTICIPANTS]);
+ 
+    int other;
     for(int i = 0; i < numCustomers; i++)
     {
-      other = list[rand() % numCustomers];
+      other = rand() % numCustomers;
 
-      if(list[i].hasSameInclination(other))
+      if(list[i].hasSameInclination(list[other]))
       {
-        list[i].rob(other);
+        list[i].rob(list[other]);
       }
       else
       {
-        list[i].throwSomething(other);
+        list[i].throwSomething(list[other]);
       }
     }
     
@@ -101,13 +118,13 @@ int main()
   {
     MoeBar.sell_stuff();
     CBGStore.sell_stuff();
-    for (int i=0; i < NUM_OF_CUSTOMERS; i++)
+    for (int i=0; i < NUM_PARTICIPANTS; i++)
       cout << list[i] << endl;
     MoeBar.customers_leave(list, MoeBar.getNumCustomers());
     CBGStore.customers_leave(list, CBGStore.getNumCustomers());
-  //  random_shuffle(&list[0], &list[NUM_OF_CUSTOMERS]);
+  //  random_shuffle(&list[0], &list[NUM_PARTICIPANTS]);
 
-    for (int i = 0; i < NUM_OF_CUSTOMERS; i++)
+    for (int i = 0; i < NUM_PARTICIPANTS; i++)
     {
       here = true;
       for(int j = 0; j < desperateCustomers; j++)
@@ -121,7 +138,7 @@ int main()
         do
         {
           here = true;
-          unluckyPerson = (rand() % NUM_OF_CUSTOMERS);
+          unluckyPerson = (rand() % NUM_PARTICIPANTS);
           for (int j=0; j<desperateCustomers; j++)
           {
             if (list[unluckyPerson].getName() == listOfDesperation[j].getName())
@@ -135,7 +152,7 @@ int main()
           list[i].throwSomething(list[unluckyPerson]);
       }
     }
-    for (int i = 0; i < NUM_OF_CUSTOMERS; i++)
+    for (int i = 0; i < NUM_PARTICIPANTS; i++)
     {
       here = true;
       for(int j=0; j<desperateCustomers; j++)
@@ -176,9 +193,9 @@ int main()
   }*/
   //Sorting
   
-/*  for (int j=0; j < NUM_OF_CUSTOMERS; j++)
+/*  for (int j=0; j < NUM_PARTICIPANTS; j++)
   {
-    for (int i=0; i < (NUM_OF_CUSTOMERS-1); i++)
+    for (int i=0; i < (NUM_PARTICIPANTS-1); i++)
     {
       if (list[i].getHappiness() < list[i+1].getHappiness())
       {
@@ -188,7 +205,7 @@ int main()
       }
     }
   }
-  for (int i=0; i<NUM_OF_CUSTOMERS; i++)
+  for (int i=0; i<NUM_PARTICIPANTS; i++)
   {
     cout << list[i] << endl;
   }*/
