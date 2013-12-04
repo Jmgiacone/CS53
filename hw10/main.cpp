@@ -94,7 +94,7 @@ int main()
       }
     }
     
-    for(int i = numCustomers - 1; i > 0; i--)
+    for(int i = numCustomers - 1; i >= 0; i--)
     {
       if(list[i].getHappiness() < 10 || list[i].getHappiness() > 90)
       {
