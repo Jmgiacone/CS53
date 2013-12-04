@@ -98,9 +98,9 @@ int main()
     {
       if(list[i].getHappiness() < 10 || list[i].getHappiness() > 90)
       {
+        cout << list[i].getName() << " is at happiness level " << list[i].getHappiness() << ". There are now " << numCustomers - 1 << " people left." << endl;
         removeIndex(list, i, numCustomers);
         numCustomers--;
-        cout << list[i].getName() << " is gone. There are now " << numCustomers << " people left." << endl;
       }
     }
 
