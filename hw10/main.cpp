@@ -1,3 +1,13 @@
+//Names:        MURTISHAW, AARON
+//		GIACONE, JORDAN
+//		LONG, JACOB
+//Class:	CS 53, Section C
+//Date:         4 December 2013
+//Description:  Twenty customers read-in from a file, buy stuff, and then 
+//		throw stuff at each other or steal stuff from each other
+//		until all but one person has left or until twenty rounds
+//              have passed.
+
 #include "Business.h"
 #include "Customer.h"
 #include "Product.h"
@@ -11,16 +21,24 @@ using namespace std;
 
 const int NUM_PARTICIPANTS = 20;
 
+//Purpose:  Removes a Customer from the Customer array list[]
+//Pre:      Size <= the size of list[]
+//Post:     Removes a Customer from the array
 void removeIndex(Customer list[], const int index, const int size);
+
+//Purpose:  Displays the entire Customer array list[]
+//Pre:      listSize <= the size of the array
+//Post:     Outputs information about all customers in list[]
 void displayArray(ostream& stream, Customer list[], const int listSize);
 
 int main()
 {
   srand(time(NULL));
   
-  int numCustomers = 0, numCycles = 0;
+  int numCustomers = 0, numCycles = 0, numParticipants = 0, MoeHap=0, CBGHap=0;
   string custName, store;
   Customer list[NUM_PARTICIPANTS];
+  Customer participants[NUM_PARTICIPANTS];
   ifstream custlist("CustomerList.txt");
 
   Business MoesBar("Moe's Bar", 0 ,"MoeBar.txt"), CBGStore("Comic Book Guy's Store", 0, "CBGStore.txt");
@@ -50,6 +68,7 @@ int main()
     cout << list[i] << endl;
   while(numCustomers > 1 && numCycles < 20)
   {
+    cout << endl << "Round " << numCycles + 1 << ":" << endl << endl;
     while(numCustomers - 1 >= 0)
     {
       if(list[numCustomers - 1].getInclination() == MOES_BAR)
@@ -101,18 +120,41 @@ int main()
       if(list[i].getHappiness() < 10 || list[i].getHappiness() > 90)
       {
         cout << list[i].getName() << " is at happiness level " << list[i].getHappiness() << ". There are now " << numCustomers - 1 << " people left." << endl;
+        participants[i] = list[i];
         removeIndex(list, i, numCustomers);
         numCustomers--;
+        numParticipants++;
       }
     }
 
     displayArray(cout, list, numCustomers);
     numCycles++;
   }
-  
+  participants[numParticipants] = list[0];
+  for (int i = 0; i < NUM_PARTICIPANTS; i++)
+  {
+    if (list[i].getInclination() == MOES_BAR)
+      MoeHap += list[i].getHappiness();
+    else if (list[i].getInclination() == COMIC_BOOK_STORE)
+      CBGHap += list[i].getHappiness();
+  }
+  if (MoeHap > CBGHap)
+    cout << "The " << MOES_BAR << "s win with a combined happiness of "
+         << MoeHap << "," << endl << " beating the " << COMIC_BOOK_STORE
+         << "s with a combined happiness of " << CBGHap << "." << endl;
+  else if (MoeHap < CBGHap)
+    cout << "The " << COMIC_BOOK_STORE << "s win with a combined happiness of "
+         << CBGHap << "," << endl << " beating the " << MOES_BAR
+         << "s with a combined happiness of " << MoeHap << "." << endl;
+  else if (MoeHap == CBGHap)
+    cout << "The " << MOES_BAR << "s and the " << COMIC_BOOK_STORE
+         << "s both suck with each having a combined happiness of " << MoeHap
+         << endl;
   return 0;
 }
 
+
+//FUNCTION DEFINITIONS
 void removeIndex(Customer list[], const int index, const int size)
 {
   for(int i = index; i < size - 1; i++)
