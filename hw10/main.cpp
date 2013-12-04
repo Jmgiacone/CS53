@@ -90,7 +90,8 @@ int main()
         cout << "We have another problem" << endl;
       }
     }
-   
+  
+    cout << endl; 
     MoesBar.sell_stuff();
     CBGStore.sell_stuff();
 
@@ -101,7 +102,8 @@ int main()
     numCustomers += CBGStore.customers_leave(list, numCustomers);  
  
     random_shuffle(&list[0], &list[numCustomers]);
- 
+
+    cout << endl; 
     int other;
     for(int i = 0; i < numCustomers; i++)
     {
@@ -116,7 +118,8 @@ int main()
         list[i].throwSomething(list[other]);
       }
     }
-    
+   
+    cout << endl; 
     for(int i = numCustomers - 1; i >= 0; i--)
     {
       if(list[i].getHappiness() < 10 || list[i].getHappiness() > 90)
@@ -133,6 +136,7 @@ int main()
       }
     }
 
+    cout << endl;
     displayArray(cout, list, numCustomers);
     numCycles++;
   }
