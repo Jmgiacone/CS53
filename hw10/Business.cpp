@@ -96,11 +96,14 @@ void Business::sell_stuff()
 short Business::customers_leave(Customer customers[], const int numCustomers)
 {
   short count = 0;
-  for(int i = numCustomers - 1; m_numCustomers > 0; i++)
+  int streetIndex = numCustomers;
+  for(int customerIndex = 0; m_numCustomers > 0; customerIndex++)
   {
-    customers[i] = m_customers[i];
+    cout << "Swapping index " << customerIndex << " of " << m_name << " into index " << streetIndex << " of the street Array" << endl;
+    customers[streetIndex] = m_customers[customerIndex];
     m_numCustomers--;
     count++;
+    streetIndex++;
   } 
 
   return count;
