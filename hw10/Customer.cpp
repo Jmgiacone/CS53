@@ -37,11 +37,14 @@ bool Customer::buy_something(const Product& p)
       m_numPurchases++;
       
       m_happiness += 15;
+      cout << m_name << " bought " << p << " and their happiness is now " << m_happiness << endl;
       return true; 
     }
   }
   
   m_happiness -= 10;
+  
+  cout << m_name << " didn't buy " << p << " and their happiness is now " << m_happiness << endl;
   return false;
 }
 bool Customer::throwSomething(Customer& c)
@@ -50,13 +53,15 @@ bool Customer::throwSomething(Customer& c)
   {
     m_happiness += 5;
     c.m_happiness -= 20;
- 
+    
+    cout << m_name  << " threw their " << m_purchases[m_numPurchases - 1] << " at " << c.m_name << endl; 
     //Cut the last index off the array. Effectively 'removing' the last item
     m_numPurchases--;
 
     return true;
   }
-
+  
+  cout << m_name << " didn't get a chance to throw anything at " << c.m_name << " because they don't have anything to throw." << endl;
   m_happiness -= 25;
   return false;
 }
@@ -69,10 +74,14 @@ bool Customer::rob(Customer& c)
     c.m_numPurchases--;
     m_happiness += 25;
     c.m_happiness -= 20;
+    
+    cout << m_name << " stole " << c.m_purchases[c.m_numPurchases + 1] << " from " << c.m_name << endl;
     return true;
   }
  
   m_happiness -= 5;
+  
+  cout << m_name << " didn't get a chance to steal anything from " << c.m_name << endl;
   return false;
 }
 
