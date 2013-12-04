@@ -26,7 +26,7 @@ class Customer
     float getMoney() const {return m_money;};
     string getInclination() {return m_inclination;};
     short getHappiness() const {return m_happiness;};
-    void setHappiness(short s) {m_happiness = s;};
+    void setHappiness(short s) {m_happiness =(s < 0 ? 0 : (s > 100 ? 100 : s));};
     void setMoney(const float m) {m_money = m;};
     void print() const;
     bool buy_something(const Product& p);
