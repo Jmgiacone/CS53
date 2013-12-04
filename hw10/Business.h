@@ -33,10 +33,31 @@ class Business
   public:
     Business(const string name = "", const float money = 0, 
              const string fileName = "");
+
+    //Purpose:  Prints out information about the business
+    //Pre:      None
+    //Post:  	Outputs information about the business to the screen
     void print() const;
+    
+    //Purpose:  Adds a customer to the business
+    //Pre:      None
+    //Post:     Returns true if the number of customers < MAX_CUSTOMERS
     bool addCustomer(Customer& c);
+    
+    //Purpose:  Business tries to sell stuff to each customer
+    //Pre: 	None
+    //Post:	Customer will possibly buy a random item
     void sell_stuff();
+    
+    //Purpose:  Gets rid of customers in a business
+    //Pre:	numCustomers <= size of customers[]
+    //Post:	Puts customers into customers[]
+    //		Returns number of customers that left
     short customers_leave(Customer customers[], const int numCustomers); 
+    
+    //Purpose:  Gets the number of customers the Business has
+    //Pre:      None
+    //Post:     Returns m_numCustomers(short)
     short getNumCustomers() {return m_numCustomers;};
 };
 #endif
