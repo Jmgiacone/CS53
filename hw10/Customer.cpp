@@ -42,13 +42,13 @@ bool Customer::buy_something(const Product& p)
       m_money -= p.m_price;
       m_purchases[m_numPurchases] = p;
       m_numPurchases++;
-      setHappiness(m_happiness+15);
+      setHappiness(m_happiness + 15);
       cout << m_name << " bought " << p << " and their happiness is now " << m_happiness << endl;
       return true; 
     }
   }
   
-  setHappiness(m_happiness-10);
+  setHappiness(m_happiness - 10);
   
   cout << m_name << " didn't buy " << p << " and their happiness is now " << m_happiness << endl;
   return false;
@@ -60,15 +60,21 @@ bool Customer::throwSomething(Customer& c)
     setHappiness(m_happiness + 5);
     c.setHappiness(c.m_happiness - 20);
     
-    cout << m_name  << " threw their " << m_purchases[m_numPurchases - 1] << " at " << c.m_name << endl; 
+    cout << m_name  << " threw their " << m_purchases[m_numPurchases - 1] 
+         << " at " << c.m_name << ". Their happiness is now " << m_happiness 
+         << " and " << c.m_name << "'s happiness is now: " << c.m_happiness 
+         << endl; 
     //Cut the last index off the array. Effectively 'removing' the last item
     m_numPurchases--;
 
     return true;
   }
+
+  setHappiness(m_happiness - 25);
+  cout << m_name << " didn't get a chance to throw anything at " << c.m_name 
+       << " because they don't have anything to throw. Their happiness is now: " 
+       << m_happiness << endl;
   
-  cout << m_name << " didn't get a chance to throw anything at " << c.m_name << " because they don't have anything to throw." << endl;
-  setHappiness(m_happiness-25);
   return false;
 }
 
@@ -82,14 +88,18 @@ bool Customer::rob(Customer& c)
     setHappiness(m_happiness + 25);
     c.setHappiness(c.m_happiness - 20);
     
-    cout << m_name << " stole " << m_purchases[m_numPurchases - 1] << " from " << c.m_name << endl;
+    cout << m_name << " stole " << m_purchases[m_numPurchases - 1] 
+         << " from " << c.m_name << ". Their happiness is now " << m_happiness 
+         << " and " << c.m_name << "'s happiness is now: " << c.m_happiness 
+         << endl;;
 
     return true;
   }
  
   setHappiness(m_happiness - 5);
   
-  cout << m_name << " didn't get a chance to steal anything from " << c.m_name << endl;
+  cout << m_name << " didn't get a chance to steal anything from " << c.m_name 
+       << ". Their happiness is now: " << m_happiness << endl;
   return false;
 }
 
