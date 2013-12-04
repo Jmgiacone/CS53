@@ -70,12 +70,14 @@ bool Customer::rob(Customer& c)
 {
   if(m_numPurchases < MAX_PURCHASES && c.m_numPurchases > 0)
   {
-    m_purchases[m_numPurchases] = c.m_purchases[c.m_numPurchases];
+    m_purchases[m_numPurchases] = c.m_purchases[c.m_numPurchases - 1];
     c.m_numPurchases--;
+    m_numPurchases++;
     m_happiness += 25;
     c.m_happiness -= 20;
     
-    cout << m_name << " stole " << c.m_purchases[c.m_numPurchases + 1] << " from " << c.m_name << endl;
+    cout << m_name << " stole " << m_purchases[m_numPurchases - 1] << " from " << c.m_name << endl;
+
     return true;
   }
  
